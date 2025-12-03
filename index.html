@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,26 +13,41 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
+            /* CS/Terminal vibe */
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            background-color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            /* Subtle background */
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 2rem 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid #333;
+            padding: 1.5rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         nav {
@@ -43,7 +59,8 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #667eea;
+            color: #ffffff;
+            letter-spacing: 2px;
         }
 
         .nav-links {
@@ -53,156 +70,167 @@
         }
 
         .nav-links a {
-            color: #333;
+            color: #aaa;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: #ffffff;
+            text-decoration: underline;
         }
 
         .hero {
-            padding: 6rem 0;
+            padding: 8rem 0;
             text-align: center;
-            color: white;
+            border-bottom: 1px solid #333;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease-out;
+            letter-spacing: -1px;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            color: #ccc;
         }
 
         .social-links {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
         }
 
         .social-links a {
-            color: white;
+            color: #ffffff;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.2);
-            border-radius: 5px;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #ffffff;
             transition: all 0.3s;
         }
 
         .social-links a:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
+            background: #ffffff;
+            color: #000000;
         }
 
         section {
-            background: white;
-            margin: 2rem 0;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 4rem 0;
+            border-bottom: 1px solid #222;
         }
 
         h2 {
-            color: #667eea;
-            margin-bottom: 2rem;
+            color: #ffffff;
+            margin-bottom: 2.5rem;
             font-size: 2rem;
-            border-bottom: 3px solid #667eea;
-            display: inline-block;
-            padding-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-left: 5px solid #ffffff;
+            padding-left: 1rem;
         }
 
+        /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .skill-card {
             padding: 1.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 8px;
-            transition: transform 0.3s;
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #333;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .skill-card:hover {
+            border-color: #ffffff;
             transform: translateY(-5px);
         }
 
         .skill-card h3 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             font-size: 1.2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
         }
 
+        .skill-card p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Experience */
         .experience-item {
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             padding-left: 2rem;
-            border-left: 3px solid #667eea;
+            border-left: 1px solid #555;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 9px;
+            height: 9px;
+            background: #ffffff;
+            border-radius: 50%;
         }
 
         .experience-item h3 {
-            color: #667eea;
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
         }
 
         .experience-meta {
-            color: #666;
+            color: #888;
             font-style: italic;
             margin-bottom: 1rem;
+            font-family: sans-serif;
+            font-size: 0.9rem;
         }
 
         .experience-item ul {
             margin-left: 1.5rem;
             margin-top: 1rem;
+            color: #ccc;
         }
 
         .experience-item li {
             margin-bottom: 0.5rem;
         }
 
-        .publication-card {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #667eea;
+        /* Publications & Projects */
+        .publication-card,
+        .project-card {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #333;
+            transition: border-color 0.3s;
         }
 
-        .publication-card h3 {
-            color: #667eea;
+        .publication-card:hover,
+        .project-card:hover {
+            border-color: #ffffff;
+        }
+
+        .publication-card h3,
+        .project-card h3 {
             margin-bottom: 0.5rem;
         }
 
         .publication-meta {
-            color: #666;
+            color: #888;
             font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover {
-            transform: scale(1.02);
-        }
-
-        .project-card h3 {
-            color: #667eea;
             margin-bottom: 1rem;
         }
 
@@ -214,61 +242,59 @@
         }
 
         .tech-tag {
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            background: #333;
+            color: #fff;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.8rem;
+            border: 1px solid #555;
         }
 
         .cert-badge {
             display: inline-block;
-            background: #4CAF50;
-            color: white;
+            border: 1px solid #ffffff;
+            color: #ffffff;
             padding: 0.8rem 1.5rem;
-            border-radius: 5px;
             margin: 0.5rem;
             font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .cert-badge:hover {
+            background: #ffffff;
+            color: #000;
         }
 
         footer {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem 0;
+            background: #000;
+            padding: 3rem 0;
             text-align: center;
-            margin-top: 3rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            border-top: 1px solid #333;
+            color: #666;
         }
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
-            
+
             .nav-links {
-                flex-direction: column;
-                gap: 1rem;
+                display: none;
+                /* Simplify for mobile for now */
             }
-            
+
             section {
-                padding: 2rem 1rem;
+                padding: 2rem 0;
             }
         }
     </style>
 </head>
+
 <body>
+    <canvas id="bg-canvas"></canvas>
+
     <header>
         <nav class="container">
-            <div class="logo">SG</div>
+            <div class="logo">SG_TERMINAL</div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -283,8 +309,10 @@
 
     <div class="hero">
         <div class="container">
+            <img src="profile.png" alt="Profile"
+                style="width: 150px; height: 150px; border-radius: 50%; border: 2px solid #fff; margin-bottom: 2rem; object-fit: cover;">
             <h1>Shashank Ghimire</h1>
-            <p>Network and Linux Enthusiast | System Administrator </p>
+            <p>Network and Linux Enthusiast | System Administrator</p>
             <div class="social-links">
                 <a href="mailto:shashank.ghimire8848@gmail.com">Email</a>
                 <a href="https://github.com/Shashank7777" target="_blank">GitHub</a>
@@ -297,20 +325,30 @@
     <div class="container">
         <section id="about">
             <h2>About Me</h2>
-            <p style="font-size: 1.1rem; line-height: 1.8;">
-                I am a motivated Electronics, Communication, and Information Engineering graduate with hands-on experience in system administration, infrastructure monitoring, and network architecture. With a strong foundation in Linux systems, networking protocols, and cybersecurity, I am passionate about solving complex technical challenges and contributing to cutting-edge research in network security and system internals. My interests include Software-Defined Networking (SDN), Network Functions Virtualization (NFV), Programmable Networks, and applying AI/ML techniques for network optimization and intelligent automation. Currently serving as Teaching Faculty at NCMT and Visiting Faculty at Acme Engineering College, I mentor and educate the next generation of engineers while continuously expanding my expertise in DevOps, eBPF, and cloud infrastructure.
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #ccc;">
+                I am a motivated Electronics, Communication, and Information Engineering graduate with hands-on
+                experience in system administration, infrastructure monitoring, and network architecture. With a strong
+                foundation in Linux systems, networking protocols, and cybersecurity, I am passionate about solving
+                complex technical challenges and contributing to cutting-edge research in network security and system
+                internals. My interests include Software-Defined Networking (SDN), Network Functions Virtualization
+                (NFV), Programmable Networks, and applying AI/ML techniques for network optimization and intelligent
+                automation. Currently serving as Teaching Faculty at NCMT and Visiting Faculty at Acme Engineering
+                College, I mentor and educate the next generation of engineers while continuously expanding my expertise
+                in DevOps, eBPF, and cloud infrastructure.
             </p>
         </section>
 
         <section id="experience">
             <h2>Professional Experience</h2>
-            
+
             <div class="experience-item">
                 <h3>Teaching Faculty</h3>
-                <div class="experience-meta">NCMT (National College of Management and Technology) | May 2025 – Present | Kathmandu, Nepal</div>
+                <div class="experience-meta">NCMT (National College of Management and Technology) | May 2025 – Present |
+                    Kathmandu, Nepal</div>
                 <ul>
                     <li>Teaching advanced computer networking and digital logic design to IT students</li>
-                    <li>Developing hands-on course materials and conducting lab sessions with network simulation tools</li>
+                    <li>Developing hands-on course materials and conducting lab sessions with network simulation tools
+                    </li>
                     <li>Mentoring students on research projects and academic pursuits</li>
                 </ul>
             </div>
@@ -320,7 +358,8 @@
                 <div class="experience-meta">Acme Engineering College | Present | Kathmandu, Nepal</div>
                 <ul>
                     <li>Teaching Computer Network to 6th semester engineering students</li>
-                    <li>Delivering comprehensive lectures on networking fundamentals, protocols, and network architecture</li>
+                    <li>Delivering comprehensive lectures on networking fundamentals, protocols, and network
+                        architecture</li>
                     <li>Guiding students through practical networking labs and real-world implementations</li>
                 </ul>
             </div>
@@ -329,7 +368,8 @@
                 <h3>System Administrator</h3>
                 <div class="experience-meta">Silver Lining Pvt. Ltd. | Dec 2024 – May 2025 | Kathmandu, Nepal</div>
                 <ul>
-                    <li>Installed, configured, and maintained enterprise servers ensuring optimal performance and uptime</li>
+                    <li>Installed, configured, and maintained enterprise servers ensuring optimal performance and uptime
+                    </li>
                     <li>Integrated Prometheus and Grafana for performance metrics and log analysis</li>
                     <li>Implemented data backup strategies and disaster recovery plans for business continuity</li>
                     <li>Monitored system performance and resolved technical problems to minimize downtime</li>
@@ -340,9 +380,11 @@
                 <h3>Infrastructure Monitoring and Support</h3>
                 <div class="experience-meta">Classic Tech. Pvt. Ltd. | Oct 2023 – Sep 2024 | Kathmandu, Nepal</div>
                 <ul>
-                    <li>Designed and maintained data-center infrastructure including servers, routers, switches, and firewalls</li>
+                    <li>Designed and maintained data-center infrastructure including servers, routers, switches, and
+                        firewalls</li>
                     <li>Monitored internal servers, network traffic, and latency for optimal network management</li>
-                    <li>Implemented monitoring software for proactive performance tracking of CDNs and network devices</li>
+                    <li>Implemented monitoring software for proactive performance tracking of CDNs and network devices
+                    </li>
                     <li>Researched and recommended emerging networking technologies across multi-vendor platforms</li>
                 </ul>
             </div>
@@ -352,7 +394,8 @@
                 <div class="experience-meta">Insight Technology Pvt. Ltd. | Dec 2022 – Oct 2023 | Lalitpur, Nepal</div>
                 <ul>
                     <li>Designed, implemented, and upgraded network infrastructures</li>
-                    <li>Set up and troubleshot multi-vendor platforms including Cisco, Mikrotik, Sophos, and Fortigate</li>
+                    <li>Set up and troubleshot multi-vendor platforms including Cisco, Mikrotik, Sophos, and Fortigate
+                    </li>
                     <li>Researched cost-effective solutions for network platforms</li>
                 </ul>
             </div>
@@ -363,19 +406,23 @@
             <div class="skills-grid">
                 <div class="skill-card">
                     <h3>Operating Systems</h3>
-                    <p>Linux (Ubuntu, CentOS, RHEL), Windows Server, Linux Internals, Virtualization (VMware, VirtualBox)</p>
+                    <p>Linux (Ubuntu, CentOS, RHEL), Windows Server, Linux Internals, Virtualization (VMware,
+                        VirtualBox)</p>
                 </div>
                 <div class="skill-card">
                     <h3>Networking</h3>
-                    <p>TCP/IP, SSH, DNS, DHCP, OSPF, BGP, LACP, MSTP, VPLS, VPN, MPLS, Network Design & Simulation, SDN, NFV, Programmable Networks</p>
+                    <p>TCP/IP, SSH, DNS, DHCP, OSPF, BGP, LACP, MSTP, VPLS, VPN, MPLS, Network Design & Simulation, SDN,
+                        NFV, Programmable Networks</p>
                 </div>
                 <div class="skill-card">
                     <h3>AI & Machine Learning</h3>
-                    <p>Machine Learning for Network Optimization, AI-driven Network Analytics, Anomaly Detection, Metaheuristic Algorithms (GA, PSO, SA)</p>
+                    <p>Machine Learning for Network Optimization, AI-driven Network Analytics, Anomaly Detection,
+                        Metaheuristic Algorithms (GA, PSO, SA)</p>
                 </div>
                 <div class="skill-card">
                     <h3>Cybersecurity</h3>
-                    <p>Network Traffic Analysis, Intrusion Detection, Firewall Configuration, Penetration Testing (Nmap, Burpsuite, Metasploit)</p>
+                    <p>Network Traffic Analysis, Intrusion Detection, Firewall Configuration, Penetration Testing (Nmap,
+                        Burpsuite, Metasploit)</p>
                 </div>
                 <div class="skill-card">
                     <h3>DevOps & Monitoring</h3>
@@ -394,28 +441,36 @@
 
         <section id="publications">
             <h2>Research Publications</h2>
-            
+
             <div class="publication-card">
                 <h3>Automatic Name-based Software Bug Detection via AST-Driven Static Analysis and Machine Learning</h3>
                 <div class="publication-meta">International Journal of Computer Applications | September 22, 2025</div>
-                <p>Introduced a name-based bug detection technique for statically typed languages using ASTs to classify and localize bugs. Generated negative samples from ~720,000 parsed C snippets and achieved 83–95% F1 scores with a tokenized classification model.</p>
-                <a href="https://www.ijcaonline.org/archives/volume187/number39/dahal-2025-ijca-925682.pdf" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 500;">📄 Read Full Paper →</a>
+                <p>Introduced a name-based bug detection technique for statically typed languages using ASTs to classify
+                    and localize bugs. Generated negative samples from ~720,000 parsed C snippets and achieved 83–95% F1
+                    scores with a tokenized classification model.</p>
+                <a href="https://www.ijcaonline.org/archives/volume187/number39/dahal-2025-ijca-925682.pdf"
+                    target="_blank" style="color: #fff; text-decoration: underline;">📄 Read Full Paper →</a>
             </div>
 
             <div class="publication-card">
                 <h3>5G Network Deployment Planning Using Metaheuristic Approaches</h3>
                 <div class="publication-meta">MDPI Telecom | July 9, 2023</div>
-                <p>Optimized 5G base station deployment using Genetic Algorithm, Particle Swarm Optimization, Simulated Annealing, and Grey Wolf Optimizer. Highlighted efficiency of PSO and GA in balancing coverage and capacity for Urban Macro and Remote Macro scenarios.</p>
-                <a href="https://www.mdpi.com/2673-4001/5/3/30" target="_blank" style="color: #667eea; text-decoration: none; font-weight: 500;">📄 Read Full Paper →</a>
+                <p>Optimized 5G base station deployment using Genetic Algorithm, Particle Swarm Optimization, Simulated
+                    Annealing, and Grey Wolf Optimizer. Highlighted efficiency of PSO and GA in balancing coverage and
+                    capacity for Urban Macro and Remote Macro scenarios.</p>
+                <a href="https://www.mdpi.com/2673-4001/5/3/30" target="_blank"
+                    style="color: #fff; text-decoration: underline;">📄 Read Full Paper →</a>
             </div>
         </section>
 
         <section id="projects">
             <h2>Research Projects</h2>
-            
+
             <div class="project-card">
                 <h3>NVIDIA GPU Compatibility on RHEL-Kubernetes</h3>
-                <p>Conducted in-depth technical study to assess NVIDIA GPU compatibility with RHEL Kubernetes clusters. Configured GPU passthrough, deployed GPU-enabled containers, and integrated NVIDIA device plugins.</p>
+                <p>Conducted in-depth technical study to assess NVIDIA GPU compatibility with RHEL Kubernetes clusters.
+                    Configured GPU passthrough, deployed GPU-enabled containers, and integrated NVIDIA device plugins.
+                </p>
                 <div class="tech-tags">
                     <span class="tech-tag">RHEL 8/9</span>
                     <span class="tech-tag">Kubernetes</span>
@@ -424,12 +479,16 @@
                     <span class="tech-tag">Helm</span>
                     <span class="tech-tag">CRI-O</span>
                 </div>
-                <p style="margin-top: 1rem;"><a href="https://blog.devops.dev/nvidia-gpu-in-a-kubernetes-cluster-on-red-hat-b891c733ac1b" target="_blank" style="color: #667eea;">Read on Medium →</a></p>
+                <p style="margin-top: 1rem;"><a
+                        href="https://blog.devops.dev/nvidia-gpu-in-a-kubernetes-cluster-on-red-hat-b891c733ac1b"
+                        target="_blank" style="color: #fff; text-decoration: underline;">Read on Medium →</a></p>
             </div>
 
             <div class="project-card">
                 <h3>Extended Berkeley Packet Filter (eBPF) Technical Research</h3>
-                <p>Researched eBPF capabilities for enhancing observability, networking, and security in Linux systems. Implemented eBPF programs for real-time tracing, system call monitoring, and packet filtering at kernel level.</p>
+                <p>Researched eBPF capabilities for enhancing observability, networking, and security in Linux systems.
+                    Implemented eBPF programs for real-time tracing, system call monitoring, and packet filtering at
+                    kernel level.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">Linux Kernel 5.x+</span>
                     <span class="tech-tag">eBPF</span>
@@ -438,52 +497,63 @@
                     <span class="tech-tag">XDP</span>
                     <span class="tech-tag">Perf</span>
                 </div>
-                <p style="margin-top: 1rem;"><a href="https://github.com/Shashank7777" target="_blank" style="color: #667eea;">View on GitHub →</a></p>
+                <p style="margin-top: 1rem;"><a href="https://github.com/Shashank7777" target="_blank"
+                        style="color: #fff; text-decoration: underline;">View on GitHub →</a></p>
             </div>
         </section>
 
         <section id="blogs">
             <h2>Technical Blogs</h2>
-            
+
             <div class="project-card">
                 <h3>BCC (BPF Compiler Collection) and CO-RE</h3>
-                <p>Deep dive into BPF Compiler Collection and the Compile Once - Run Everywhere paradigm for eBPF, exploring portable eBPF program development across different kernel versions.</p>
+                <p>Deep dive into BPF Compiler Collection and the Compile Once - Run Everywhere paradigm for eBPF,
+                    exploring portable eBPF program development across different kernel versions.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">eBPF</span>
                     <span class="tech-tag">BCC</span>
                     <span class="tech-tag">CO-RE</span>
                     <span class="tech-tag">Linux Kernel</span>
                 </div>
-                <p style="margin-top: 1rem;"><a href="https://medium.com/@redemption8848/bcc-bpf-compiler-collection-and-co-re-compile-once-run-everywhere-paradigm-for-ebpf-0359d372270f" target="_blank" style="color: #667eea;">Read on Medium →</a></p>
+                <p style="margin-top: 1rem;"><a
+                        href="https://medium.com/@redemption8848/bcc-bpf-compiler-collection-and-co-re-compile-once-run-everywhere-paradigm-for-ebpf-0359d372270f"
+                        target="_blank" style="color: #fff; text-decoration: underline;">Read on Medium →</a></p>
             </div>
 
             <div class="project-card">
                 <h3>TCP Congestion Control Algorithms with Docker and iperf3</h3>
-                <p>Practical exploration of TCP congestion control algorithms on Linux, demonstrating performance testing and analysis using Docker containers and iperf3 benchmarking tool.</p>
+                <p>Practical exploration of TCP congestion control algorithms on Linux, demonstrating performance
+                    testing and analysis using Docker containers and iperf3 benchmarking tool.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">TCP/IP</span>
                     <span class="tech-tag">Docker</span>
                     <span class="tech-tag">iperf3</span>
                     <span class="tech-tag">Linux Networking</span>
                 </div>
-                <p style="margin-top: 1rem;"><a href="https://medium.com/@redemption8848/tcp-congestion-control-algorithms-with-docker-and-iperf3-on-linux-a0b53810cffd" target="_blank" style="color: #667eea;">Read on Medium →</a></p>
+                <p style="margin-top: 1rem;"><a
+                        href="https://medium.com/@redemption8848/tcp-congestion-control-algorithms-with-docker-and-iperf3-on-linux-a0b53810cffd"
+                        target="_blank" style="color: #fff; text-decoration: underline;">Read on Medium →</a></p>
             </div>
 
             <div class="project-card">
                 <h3>Understanding Container Networking with Network Namespaces</h3>
-                <p>Comprehensive guide to container networking fundamentals, exploring how network namespaces enable network isolation and connectivity in containerized environments.</p>
+                <p>Comprehensive guide to container networking fundamentals, exploring how network namespaces enable
+                    network isolation and connectivity in containerized environments.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">Network Namespaces</span>
                     <span class="tech-tag">Container Networking</span>
                     <span class="tech-tag">Linux</span>
                     <span class="tech-tag">Docker</span>
                 </div>
-                <p style="margin-top: 1rem;"><a href="https://blog.devops.dev/understanding-container-networking-with-network-namespaces-72f96526fa53" target="_blank" style="color: #667eea;">Read on DevOps.dev →</a></p>
+                <p style="margin-top: 1rem;"><a
+                        href="https://blog.devops.dev/understanding-container-networking-with-network-namespaces-72f96526fa53"
+                        target="_blank" style="color: #fff; text-decoration: underline;">Read on DevOps.dev →</a></p>
             </div>
 
             <div class="project-card">
                 <h3>Deploying NGINX Load Balancer with Ansible and Jinja2</h3>
-                <p>Step-by-step tutorial on automating NGINX load balancer deployment using Ansible automation and Jinja2 templating for infrastructure as code.</p>
+                <p>Step-by-step tutorial on automating NGINX load balancer deployment using Ansible automation and
+                    Jinja2 templating for infrastructure as code.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">Ansible</span>
                     <span class="tech-tag">NGINX</span>
@@ -491,19 +561,24 @@
                     <span class="tech-tag">Load Balancing</span>
                     <span class="tech-tag">IaC</span>
                 </div>
-                <p style="margin-top: 1rem;"><a href="https://blog.devops.dev/deploying-an-nginx-load-balancer-with-ansible-and-jinja2-templates-0e2c22fd4901" target="_blank" style="color: #667eea;">Read on DevOps.dev →</a></p>
+                <p style="margin-top: 1rem;"><a
+                        href="https://blog.devops.dev/deploying-an-nginx-load-balancer-with-ansible-and-jinja2-templates-0e2c22fd4901"
+                        target="_blank" style="color: #fff; text-decoration: underline;">Read on DevOps.dev →</a></p>
             </div>
 
             <div class="project-card">
                 <h3>NVIDIA GPU in Kubernetes Cluster on Red Hat</h3>
-                <p>Detailed walkthrough of integrating NVIDIA GPUs into Red Hat Kubernetes clusters for GPU-accelerated workloads and ML applications.</p>
+                <p>Detailed walkthrough of integrating NVIDIA GPUs into Red Hat Kubernetes clusters for GPU-accelerated
+                    workloads and ML applications.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">Kubernetes</span>
                     <span class="tech-tag">NVIDIA GPU</span>
                     <span class="tech-tag">Red Hat</span>
                     <span class="tech-tag">GPU Computing</span>
                 </div>
-                <p style="margin-top: 1rem;"><a href="https://blog.devops.dev/nvidia-gpu-in-a-kubernetes-cluster-on-red-hat-b891c733ac1b" target="_blank" style="color: #667eea;">Read on DevOps.dev →</a></p>
+                <p style="margin-top: 1rem;"><a
+                        href="https://blog.devops.dev/nvidia-gpu-in-a-kubernetes-cluster-on-red-hat-b891c733ac1b"
+                        target="_blank" style="color: #fff; text-decoration: underline;">Read on DevOps.dev →</a></p>
             </div>
         </section>
 
@@ -520,14 +595,18 @@
             <div class="experience-item">
                 <h3>Bachelor's in Electronics, Communication and Information Engineering</h3>
                 <div class="experience-meta">IOE, Thapathali Engineering Campus | 2019 – 2024 | Kathmandu, Nepal</div>
-                <p>Comprehensive program with strong foundation in computer science and engineering, focusing on electronic systems integration, circuit design, digital logic, and communication systems. Developed expertise in system internals, network security, and Linux-based systems.</p>
+                <p>Comprehensive program with strong foundation in computer science and engineering, focusing on
+                    electronic systems integration, circuit design, digital logic, and communication systems. Developed
+                    expertise in system internals, network security, and Linux-based systems.</p>
             </div>
         </section>
 
         <section id="contact">
             <h2>Get In Touch</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 1rem;">I'm always interested in discussing new opportunities, research collaborations, or technical challenges.</p>
-            <p><strong>Email:</strong> <a href="mailto:shashank.ghimire8848@gmail.com" style="color: #667eea;">shashank.ghimire8848@gmail.com</a></p>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #ccc;">I'm always interested in discussing new
+                opportunities, research collaborations, or technical challenges.</p>
+            <p><strong>Email:</strong> <a href="mailto:shashank.ghimire8848@gmail.com"
+                    style="color: #ffffff; text-decoration: underline;">shashank.ghimire8848@gmail.com</a></p>
             <p><strong>Location:</strong> Kathmandu, Nepal</p>
             <p><strong>Phone:</strong> +977-9810233895</p>
         </section>
@@ -538,5 +617,146 @@
             <p>&copy; 2025 Shashank Ghimire. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Network Particle Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        const particleCount = 80; // Increased count
+        const connectionDistance = 150;
+        const mouse = { x: null, y: null, radius: 350 }; // Increased radius
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse Interaction (Magnetic Pull)
+                if (mouse.x != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < mouse.radius) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        const directionX = forceDirectionX * force * this.density * 0.05; // Pull strength
+                        const directionY = forceDirectionY * force * this.density * 0.05;
+
+                        this.vx += directionX;
+                        this.vy += directionY;
+                    }
+                }
+
+                // Friction to stop them from accelerating forever
+                this.vx *= 0.98;
+                this.vy *= 0.98;
+
+                // Keep minimal movement
+                if (Math.abs(this.vx) < 0.1) this.vx = (Math.random() - 0.5) * 0.5;
+                if (Math.abs(this.vy) < 0.1) this.vy = (Math.random() - 0.5) * 0.5;
+            }
+
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw connections
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / connectionDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+
+                // Connect to mouse
+                if (mouse.x != null) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < mouse.radius) {
+                        // Thicker, more visible line
+                        const opacity = 1 - distance / mouse.radius;
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                        ctx.lineWidth = 1.5; // Thicker line
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            init();
+        });
+
+        resize();
+        init();
+        animate();
+    </script>
 </body>
+
 </html>
